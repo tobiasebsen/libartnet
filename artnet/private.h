@@ -100,8 +100,9 @@ extern uint16_t HIGH_BYTE;
 #endif
 
 // byte ordering macros
+#ifndef bswap_16
 #define bswap_16(x)  ((((x) >> 8) & 0xff) | (((x) & 0xff) << 8))
-
+#endif
 // htols : convert short from host to little endian order
 #ifdef WIN32
 #  define htols(x)  (x)
