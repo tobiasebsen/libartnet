@@ -612,7 +612,7 @@ int artnet_net_recv(node n, artnet_packet p, int delay) {
     return ARTNET_EOK;
   }
 
-  p->length = len;
+  p->length = (int) len;
   memcpy(&(p->from), &cliAddr.sin_addr, sizeof(struct in_addr));
   // should set to in here if we need it
   return ARTNET_EOK;
@@ -637,7 +637,7 @@ int artnet_net_send(node n, artnet_packet p) {
   if (n->state.verbose)
     printf("sending to %s\n" , inet_ntoa(addr.sin_addr));
 
-  ret = sendto(n->sd,
+  ret = (int) sendto(n->sd,
                (char*) &p->data, // char* required for win32
                p->length,
                0,
